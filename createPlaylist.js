@@ -1,7 +1,7 @@
 const userId = -1;
-
+const baseUrl = "https://playlistmanager.onrender.com";
 document.addEventListener('DOMContentLoaded', () => {
-    fetch(`http://localhost:8080/playlists?userId=${userId}`)
+    fetch(`${baseUrl}/playlists?userId=${userId}`)
         .then(response => response.json())
         .then(playlists => {
             const dropdown = document.getElementById("playlistDropdown");
@@ -25,7 +25,7 @@ document.getElementById("createPlaylistForm").addEventListener("submit", functio
     const name = document.getElementById("playlistName").value;
     const isPublic = document.getElementById("isPublic").checked;
 
-    fetch("http://localhost:8080/playlists", {
+    fetch(`${baseUrl}/playlists`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -57,7 +57,7 @@ document.getElementById("uploadSongForm").addEventListener("submit", function (e
     const formData = new FormData();
     formData.append("file", fileInput.files[0]);
 
-    fetch(`http://localhost:8080/playlists/${playlistId}/songs/upload`, {
+    fetch(`${baseUrl}/${playlistId}/songs/upload`, {
         method: "POST",
         body: formData
     })
@@ -75,7 +75,7 @@ document.getElementById("uploadSongForm").addEventListener("submit", function (e
     });
 });
 document.addEventListener('DOMContentLoaded', () => {
-    fetch(`http://localhost:8080/playlists?userId=${userId}`)
+    fetch(`${baseUrl}/playlists?userId=${userId}`)
         .then(response => response.json())
         .then(playlists => {
             const songDropdown = document.getElementById("playlistDropdown");
@@ -102,7 +102,7 @@ document.getElementById("addSubplaylistForm").addEventListener("submit", functio
     const subName = document.getElementById("subplaylistName").value;
     const userId = getUserId()
 
-    fetch("http://localhost:8080/playlists", {
+    fetch(`${baseUrl}/playlists`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -122,7 +122,7 @@ document.getElementById("addSubplaylistForm").addEventListener("submit", functio
         console.log("Subplaylist created:", subplaylist);
         const childId = subplaylist.id;
 
-        const url = `http://localhost:8080/playlists/${parentId}/add-subplaylist/${childId}?userId=${userId}`;
+        const url = `${baseUrl}/playlists/${parentId}/add-subplaylist/${childId}?userId=${userId}`;
         console.log("Calling subplaylist-linking API:", url);
 
         return fetch(url, {

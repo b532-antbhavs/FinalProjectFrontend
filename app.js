@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8080";
+const baseUrl = "https://playlistmanager.onrender.com";
     let currentUserId = null;
     let currentPlaylistId = null;
     let currentSongIndex = 0;
