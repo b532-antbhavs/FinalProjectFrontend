@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Playlist Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="createPlaylist.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Music Playlist Manager</h1>
+
+        <div class="card">
+            <h2>Create New Playlist</h2>
+            <form id="createPlaylistForm">
+                <div class="form-group">
+                    <label for="playlistName">Playlist Name</label>
+                    <input type="text" id="playlistName" name="playlistName" placeholder="My Awesome Playlist" required>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="isPublic" name="isPublic">
+                    <label for="isPublic">Make playlist public</label>
+                </div>
+
+                <button type="submit">Create Playlist</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Upload Songs</h2>
+            <form id="uploadSongForm">
+                <div class="form-group">
+                    <label for="songFile">Select Audio File</label>
+                    <input type="file" id="songFile" name="file" accept="audio/*" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="playlistDropdown">Add to Playlist</label>
+                    <select id="playlistDropdown" required>
+                        <option value="" disabled selected>Select a playlist</option>
+                        <!-- Playlist options will be populated here -->
+                    </select>
+                </div>
+
+                <button type="submit">Upload Song</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Add Subplaylist</h2>
+            <form id="addSubplaylistForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="parentPlaylist">Parent Playlist</label>
+                        <select id="parentPlaylist" required>
+                            <option value="" disabled selected>Select parent playlist</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subplaylistName">Subplaylist Name</label>
+                        <input type="text" id="subplaylistName" placeholder="Genre, Mood, etc." required>
+                    </div>
+                </div>
+
+                <button type="submit">Create Subplaylist</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="createPlaylist.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Playlist Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+
+</head>
+<body>
+
+<nav id="navbar">
+    <span id="app-title"><i class="fas fa-music"></i> Music Playlist Manager</span>
+    <div>
+        <span id="user-info" style="display:none;"></span>
+        <button id="logout-btn" onclick="logoutUser()" style="display:none;">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </div>
+</nav>
+
+<div id="register-section" style="display:none;">
+    <h3><i class="fas fa-user-plus"></i> Create Account</h3>
+    <input type="text" id="reg-username" placeholder="Choose a username">
+    <input type="password" id="reg-password" placeholder="Create a password">
+    <button onclick="registerUser()"><i class="fas fa-user-plus"></i> Register</button>
+    <p style="margin-top:1rem;">Already have an account? <a href="#" onclick="toggleLoginRegister(true)">Login</a></p>
+</div>
+
+<!-- Modify login section to include a switch to register -->
+<div id="login-section">
+    <h3><i class="fas fa-sign-in-alt"></i> Welcome Back</h3>
+    <input type="text" id="username" placeholder="Enter your username">
+    <input type="password" id="password" placeholder="Enter your password">
+    <button onclick="loginUser()"><i class="fas fa-sign-in-alt"></i> Login</button>
+    <p style="margin-top:1rem;">Don't have an account? <a href="#" onclick="toggleLoginRegister(false)">Register</a></p>
+</div>
+<div id="main-content" class="clearfix">
+    <div id="sidebar">
+            <a href="create-playlist.html" id="create-playlist-link"><i class="fas fa-plus-circle"></i> Create Playlist</a>
+        <h3><i class="fas fa-list"></i> All Playlists</h3>
+        <ul id="parent-playlists-list">
+        </ul>
+    </div>
+
+    <div id="playlist-section">
+        <label id="public-label" style="display: none;">
+            <input type="checkbox" id="is-public"> Public
+        </label>
+        <select id="parent-playlist" style="display: none;">
+            <option value="none">No Parent Playlist</option>
+        </select>
+
+        <h3><i class="fas fa-music"></i> Songs in Playlist</h3>
+        <div id="songList">
+            Select a playlist to view songs.
+        </div>
+
+        <audio id="audioPlayer" controls>
+            Your browser does not support the audio element.
+        </audio>
+
+        <h3><i class="fas fa-play-circle"></i> Music Player Controls</h3>
+        <div class="player-controls">
+            <button onclick="sendCommand('prev')"><i class="fas fa-step-backward"></i> Prev</button>
+            <button onclick="sendCommand('play')"><i class="fas fa-play"></i> Play</button>
+            <button onclick="sendCommand('pause')"><i class="fas fa-pause"></i> Pause</button>
+            <button onclick="sendCommand('stop')"><i class="fas fa-stop"></i> Stop</button>
+            <button onclick="sendCommand('next')"><i class="fas fa-step-forward"></i> Next</button>
+        </div>
+    </div>
+    <div id="admin-section" style="display: none; margin-top: 2rem;">
+        <h3><i class="fas fa-users"></i> Registered Users</h3>
+        <table id="userTable" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: var(--light-gray); text-align: left;">
+                    <th style="padding: 0.8rem;">User ID</th>
+                    <th style="padding: 0.8rem;">Username</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- Populated by JS -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
